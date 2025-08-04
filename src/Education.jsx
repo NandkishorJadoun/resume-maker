@@ -1,13 +1,18 @@
 export function Education({ education, setEducation }) {
-  
   function submitHandler(e) {
     e.preventDefault();
-    const educationInfo = { id: crypto.randomUUID() };
 
-    for (let i = 0; i < 4; i++) {
-      educationInfo[e.target.elements[i].name] = e.target.elements[i].value;
-    }
-    setEducation([...education, educationInfo]);
+    const form = e.target;
+
+    const eduEntry = {
+      id: crypto.randomUUID(),
+      college: form.college.value,
+      degree: form.degree.value,
+      location: form.location.value,
+      time: form.time.value,
+    };
+
+    setEducation([...education, eduEntry]);
   }
 
   function handleDelete(id) {
