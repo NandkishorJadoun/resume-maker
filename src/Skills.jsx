@@ -12,6 +12,8 @@ export function Skills({
 }) {
   const [langInput, setLangInput] = useState("");
   const [frameworkInput, setFrameworkInput] = useState("");
+  const [toolInput, setToolInput] = useState("");
+  const [libInput, setLibInput] = useState("");
 
   function langInputHandler(e) {
     setLangInput(e.target.value);
@@ -69,6 +71,61 @@ export function Skills({
     );
   });
 
+  function toolInputHandler(e) {
+    setToolInput(e.target.value);
+  }
+
+  function toolDeleteHandler(id) {
+    const updatedToolsList = tools.filter((tool) => tool.id !== id);
+    setTools(updatedToolsList);
+  }
+
+  function toolSubmitHandler(e) {
+    e.preventDefault();
+    const name = e.target.tool.value;
+    const id = crypto.randomUUID();
+    const tool = { name, id };
+    setTools([...tools, tool]);
+    setToolInput("");
+  }
+
+  const toolJsx = tools.map((tool) => {
+    return (
+      <span key={tool.id}>
+        {tool.name}
+        <button onClick={() => toolDeleteHandler(tool.id)}>X</button>
+      </span>
+    );
+  });
+
+    function libInputHandler(e) {
+    setLibInput(e.target.value);
+  }
+
+  function libDeleteHandler(id) {
+    const updatedLibsList = libraries.filter((lib) => lib.id !== id);
+    setLibraries(updatedLibsList);
+  }
+
+  function libSubmitHandler(e) {
+    e.preventDefault();
+    const name = e.target.library.value;
+    const id = crypto.randomUUID();
+    const lib = { name, id };
+    setLibraries([...libraries, lib]);
+    setLibInput("");
+  }
+
+  const libJsx = libraries.map((lib) => {
+    return (
+      <span key={lib.id}>
+        {lib.name}
+        <button onClick={() => libDeleteHandler(lib.id)}>X</button>
+      </span>
+    );
+  });
+
+
   return (
     <>
       <h2>Skills</h2>
@@ -88,8 +145,26 @@ export function Skills({
         submitHandler={frameworkSubmitHandler}
       />
 
+      <SkillsForm
+        name={"tool"}
+        label={"Tools: "}
+        input={toolInput}
+        inputHandler={toolInputHandler}
+        submitHandler={toolSubmitHandler}
+      />
+
+      <SkillsForm
+        name={"library"}
+        label={"Libraries: "}
+        input={libInput}
+        inputHandler={libInputHandler}
+        submitHandler={libSubmitHandler}
+      />
+
       <p>Added Languages: {langJsx}</p>
       <p>Added Frameworks: {frameworkJsx}</p>
+      <p>Added Tools: {toolJsx}</p>
+      <p>Added Libraries: {libJsx}</p>
     </>
   );
 }
