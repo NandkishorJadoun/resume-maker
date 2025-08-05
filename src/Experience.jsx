@@ -7,6 +7,7 @@ export function Experience({ experience, setExperience }) {
     company: "",
     location: "",
     time: "",
+    responsibilities: "",
   });
 
   const isEditing = editId !== null;
@@ -22,14 +23,22 @@ export function Experience({ experience, setExperience }) {
     if (isEditing) {
       setExperience(
         experience.map((entry) =>
-          entry.id === editId ? { ...entry, ...formData } : entry
+          entry.id === editId
+            ? {
+                ...entry,
+                ...formData,
+                responsibilities: formData.responsibilities.split("\n"),
+              }
+            : entry
         )
       );
       setEditId(null);
     } else {
+      const makeBulletPoints = formData.responsibilities.split("\n");
       const expEntry = {
-        id: crypto.randomUUID(),
         ...formData,
+        id: crypto.randomUUID(),
+        responsibilities: makeBulletPoints,
       };
       setExperience([...experience, expEntry]);
     }
@@ -38,12 +47,15 @@ export function Experience({ experience, setExperience }) {
       company: "",
       location: "",
       time: "",
+      responsibilities: "",
     });
   }
 
   function handleEdit(entry) {
     setEditId(entry.id);
-    setFormData(entry);
+    const convertBulletPoints = entry.responsibilities.join("\n");
+    const updatedEntry = { ...entry, responsibilities: convertBulletPoints };
+    setFormData(updatedEntry);
   }
 
   function handleCancelEdit() {
@@ -53,6 +65,7 @@ export function Experience({ experience, setExperience }) {
       company: "",
       location: "",
       time: "",
+      responsibilities: "",
     });
   }
 
@@ -63,6 +76,7 @@ export function Experience({ experience, setExperience }) {
         company: "",
         location: "",
         time: "",
+        responsibilities: "",
       });
       setEditId(null);
     }
@@ -88,16 +102,19 @@ export function Experience({ experience, setExperience }) {
       <br />
 
       <p>Submitted Experience:</p>
-
-      <br />
-
       {experience.map((expEntry) => {
         return (
           <div key={expEntry.id}>
-            <p>College: {expEntry.college}</p>
-            <p>Degree: {expEntry.degree}</p>
+            <p>Profession: {expEntry.profession}</p>
+            <p>Company: {expEntry.company}</p>
             <p>Location: {expEntry.location}</p>
             <p>Time: {expEntry.time}</p>
+            <ul>
+              Responsibilities:
+              {expEntry.responsibilities.map((point, index) => {
+                return <li key={index}>{point}</li>;
+              })}
+            </ul>
             <p>Id: {expEntry.id}</p>
             <button onClick={() => handleDelete(expEntry.id)}>Delete</button>
             <button onClick={() => handleEdit(expEntry)}>Edit</button>
@@ -155,6 +172,15 @@ function ExperienceForm({
           onChange={formHandler}
           value={formData.time}
         />
+      </label>
+      <br />
+      <label>
+        Responsibilities:
+        <textarea
+          name="responsibilities"
+          onChange={formHandler}
+          value={formData.responsibilities}
+        ></textarea>
       </label>
       <br />
       <button type="submit">{isEditing ? "Save" : "Submit"}</button>
