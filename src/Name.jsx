@@ -1,35 +1,42 @@
-export function Name({ resumeData, setResumeData }) {
-  function handleChange(e) {
-    e.target.name === "first"
-      ? setResumeData({
-          ...resumeData,
-          name: { ...resumeData.name, firstName: e.target.value },
-        })
-      : setResumeData({
-          ...resumeData,
-          name: { ...resumeData.name, lastName: e.target.value },
-        });
+import { useState } from "react";
+
+export function Name({ name, setName }) {
+  const [first, setFirst] = useState("");
+  const [last, setLast] = useState("");
+
+  function submitHandler(e){
+    e.preventDefault()
+    setName({"first": first, "last": last})
+  }
+
+
+  function handleChange(e, setInputName) {
+    const eventValue = e.target.value;
+    setInputName(eventValue);
   }
 
   return (
     <>
       <h2>Write your name:</h2>
       <br />
-      <InputName
-        name={"first"}
-        text={resumeData.name.firstName}
-        label={"First name: "}
-        handleChange={handleChange}
-      />
-      <br />
-      <InputName
-        name={"second"}
-        text={resumeData.name.lastName}
-        label={"Last name: "}
-        handleChange={handleChange}
-      />
 
-      <p>{resumeData.name.firstName + " " + resumeData.name.lastName}</p>
+      <form onSubmit={submitHandler}>
+        <InputName
+          name={"first"}
+          text={first}
+          label={"First name: "}
+          handleChange={(e) => handleChange(e, setFirst)}
+        />
+        <InputName
+          name={"last"}
+          text={last}
+          label={"Last name: "}
+          handleChange={(e) => handleChange(e, setLast)}
+        />
+        <button type="submit">Submit</button>
+      </form>
+
+      <p>Full Name: {name.first + " " + name.last}</p>
     </>
   );
 }
