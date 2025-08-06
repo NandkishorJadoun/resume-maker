@@ -4,9 +4,10 @@ export function Projects({ projects, setProjects }) {
   const [editId, setEditId] = useState(null);
   const [formData, setFormData] = useState({
     project: "",
-    time: "",
+    startTime: "",
+    endTime: "",
     features: "",
-    stack: ""
+    stack: "",
   });
 
   const isEditing = editId !== null;
@@ -43,10 +44,11 @@ export function Projects({ projects, setProjects }) {
     }
     setFormData({
       project: "",
-      time: "",
-      features: "",
-    stack: ""
+      startTime: "",
+    endTime: "",
 
+      features: "",
+      stack: "",
     });
   }
 
@@ -61,10 +63,10 @@ export function Projects({ projects, setProjects }) {
     setEditId(null);
     setFormData({
       project: "",
-      time: "",
+      startTime: "",
+    endTime: "",
       features: "",
-    stack: ""
-
+      stack: "",
     });
   }
 
@@ -72,9 +74,10 @@ export function Projects({ projects, setProjects }) {
     if (id === editId) {
       setFormData({
         project: "",
-        time: "",
+        startTime: "",
+    endTime: "",
         features: "",
-    stack: ""
+        stack: "",
       });
       setEditId(null);
     }
@@ -99,12 +102,14 @@ export function Projects({ projects, setProjects }) {
 
       <br />
 
-      <p>Submitted Projects:</p>
+      {projects.length > 0 && <p>Submitted Projects:</p>}
+      
       {projects.map((project) => {
         return (
           <div key={project.id}>
             <p>Project: {project.name}</p>
-            <p>Time: {project.time}</p>
+            <p>Start Time: {project.startTime}</p>
+            <p>End Time: {project.endTime}</p>
             <p>Stack: {project.stack}</p>
             <ul>
               Features:
@@ -142,15 +147,25 @@ function ProjectsForm({
       </label>
       <br />
       <label>
-        Time:
+        Start Time:
         <input
           type="month"
-          name="time"
+          name="startTime"
           onChange={formHandler}
-          value={formData.time}
+          value={formData.startTime}
         />
       </label>
-       <br />
+      <br />
+      <label>
+        End Time:
+        <input
+          type="month"
+          name="endTime"
+          onChange={formHandler}
+          value={formData.endTime}
+        />
+      </label>
+      <br />
       <label>
         Stack:
         <input

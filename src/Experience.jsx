@@ -6,7 +6,8 @@ export function Experience({ experience, setExperience }) {
     profession: "",
     company: "",
     location: "",
-    time: "",
+    startTime: "",
+    endTime: "",
     responsibilities: "",
   });
 
@@ -46,7 +47,8 @@ export function Experience({ experience, setExperience }) {
       profession: "",
       company: "",
       location: "",
-      time: "",
+      startTime: "",
+      endTime: "",
       responsibilities: "",
     });
   }
@@ -64,7 +66,9 @@ export function Experience({ experience, setExperience }) {
       profession: "",
       company: "",
       location: "",
-      time: "",
+      startTime: "",
+      endTime: "",
+
       responsibilities: "",
     });
   }
@@ -75,7 +79,9 @@ export function Experience({ experience, setExperience }) {
         profession: "",
         company: "",
         location: "",
-        time: "",
+        startTime: "",
+        endTime: "",
+
         responsibilities: "",
       });
       setEditId(null);
@@ -101,18 +107,19 @@ export function Experience({ experience, setExperience }) {
 
       <br />
 
-      <p>Submitted Experience:</p>
+      {experience.length > 0 && <p>Submitted Experience:</p>}
       {experience.map((expEntry) => {
         return (
           <div key={expEntry.id}>
             <p>Profession: {expEntry.profession}</p>
             <p>Company: {expEntry.company}</p>
             <p>Location: {expEntry.location}</p>
-            <p>Time: {expEntry.time}</p>
+            <p>Start Time: {expEntry.startTime}</p>
+            <p>End Time: {expEntry.endTime}</p>
             <ul>
               Responsibilities:
               {expEntry.responsibilities.map((point, index) => {
-                return <li key={index}>{point}</li>;
+                return point.trim() && <li key={index}>{point}</li>;
               })}
             </ul>
             <p>Id: {expEntry.id}</p>
@@ -165,12 +172,22 @@ function ExperienceForm({
       </label>
       <br />
       <label>
-        Time:
+        Start Time:
         <input
-          type="text"
-          name="time"
+          type="month"
+          name="startTime"
           onChange={formHandler}
-          value={formData.time}
+          value={formData.startTime}
+        />
+      </label>
+      <br />
+      <label>
+        End Time:
+        <input
+          type="month"
+          name="endTime"
+          onChange={formHandler}
+          value={formData.endTime}
         />
       </label>
       <br />

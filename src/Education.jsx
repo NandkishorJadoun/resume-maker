@@ -6,7 +6,8 @@ export function Education({ education, setEducation }) {
     college: "",
     degree: "",
     location: "",
-    time: "",
+    startTime: "",
+    endTime: "",
   });
 
   const isEditing = editId !== null;
@@ -38,7 +39,8 @@ export function Education({ education, setEducation }) {
       college: "",
       degree: "",
       location: "",
-      time: "",
+      startTime: "",
+      endTime: "",
     });
   }
 
@@ -49,12 +51,16 @@ export function Education({ education, setEducation }) {
 
   function handleCancelEdit() {
     setEditId(null);
-    setFormData({ college: "", degree: "", location: "", time: "" });
+    setFormData({
+      college: "",
+      degree: "",
+      location: "",
+      startTime: "",
+      endTime: "",
+    });
   }
 
   function handleDelete(id) {
-    console.log(id, editId);
-
     // just to check if its the same entry that's currently user editing
 
     if (id === editId) {
@@ -62,7 +68,8 @@ export function Education({ education, setEducation }) {
         college: "",
         degree: "",
         location: "",
-        time: "",
+        startTime: "",
+        endTime: "",
       });
       setEditId(null);
     }
@@ -87,9 +94,7 @@ export function Education({ education, setEducation }) {
 
       <br />
 
-      <p>Submitted Education:</p>
-
-      <br />
+      {education.length > 0 && <p>Submitted Education:</p>}
 
       {education.map((educationEntry) => {
         return (
@@ -97,7 +102,8 @@ export function Education({ education, setEducation }) {
             <p>College: {educationEntry.college}</p>
             <p>Degree: {educationEntry.degree}</p>
             <p>Location: {educationEntry.location}</p>
-            <p>Time: {educationEntry.time}</p>
+            <p>Start Time: {educationEntry.startTime}</p>
+            <p>End Time: {educationEntry.endTime}</p>
             <p>Id: {educationEntry.id}</p>
             <button onClick={() => handleDelete(educationEntry.id)}>
               Delete
@@ -129,7 +135,7 @@ function EducationForm({
             name="college"
           />
         </label>
-
+        <br />
         <label>
           Degree:
           <input
@@ -139,7 +145,7 @@ function EducationForm({
             name="degree"
           />
         </label>
-
+        <br />
         <label>
           Location:
           <input
@@ -149,17 +155,27 @@ function EducationForm({
             value={formData.location}
           />
         </label>
-
+        <br />
         <label>
-          Time:
+          Start Time:
           <input
-            type="text"
+            type="month"
             onChange={formHandler}
-            name="time"
-            value={formData.time}
+            name="startTime"
+            value={formData.startTime}
           />
         </label>
-
+        <br />
+        <label>
+          End Time:
+          <input
+            type="month"
+            onChange={formHandler}
+            name="endTime"
+            value={formData.endTime}
+          />
+        </label>
+        <br />
         <button type="submit">{isEditing ? "Save" : "Submit"}</button>
 
         {isEditing && (
