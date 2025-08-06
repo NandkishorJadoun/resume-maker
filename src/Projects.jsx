@@ -6,6 +6,7 @@ export function Projects({ projects, setProjects }) {
     project: "",
     time: "",
     features: "",
+    stack: ""
   });
 
   const isEditing = editId !== null;
@@ -44,6 +45,8 @@ export function Projects({ projects, setProjects }) {
       project: "",
       time: "",
       features: "",
+    stack: ""
+
     });
   }
 
@@ -60,6 +63,8 @@ export function Projects({ projects, setProjects }) {
       project: "",
       time: "",
       features: "",
+    stack: ""
+
     });
   }
 
@@ -69,6 +74,7 @@ export function Projects({ projects, setProjects }) {
         project: "",
         time: "",
         features: "",
+    stack: ""
       });
       setEditId(null);
     }
@@ -99,6 +105,7 @@ export function Projects({ projects, setProjects }) {
           <div key={project.id}>
             <p>Project: {project.name}</p>
             <p>Time: {project.time}</p>
+            <p>Stack: {project.stack}</p>
             <ul>
               Features:
               {project.features.map((feature, index) => {
@@ -141,6 +148,16 @@ function ProjectsForm({
           name="time"
           onChange={formHandler}
           value={formData.time}
+        />
+      </label>
+       <br />
+      <label>
+        Stack:
+        <input
+          type="text"
+          name="stack"
+          onChange={formHandler}
+          value={formData.stack}
         />
       </label>
       <br />

@@ -15,116 +15,58 @@ export function Skills({
   const [toolInput, setToolInput] = useState("");
   const [libInput, setLibInput] = useState("");
 
-  function langInputHandler(e) {
-    setLangInput(e.target.value);
+  function skillInputHandler(e, setSkillInput) {
+    setSkillInput(e.target.value);
   }
 
-  function langDeleteHandler(id) {
-    const updatedLanguagesList = languages.filter((lang) => lang.id !== id);
-    setLanguages(updatedLanguagesList);
+  function skillDeleteHandler(id, skills, setSkills) {
+    const updatedSkillsList = skills.filter((skill) => skill.id !== id);
+    setSkills(updatedSkillsList);
   }
 
-  function langSubmitHandler(e) {
+  function skillSubmitHandler(
+    e,
+    skillInputName,
+    skills,
+    setSkills,
+    setSkillInput
+  ) {
     e.preventDefault();
-    const name = e.target.language.value;
+    const name = e.target[skillInputName].value;
+
+    // early return if value is empty / just white space
+
+    if (!name.trim()) {
+      return;
+    }
+
     const id = crypto.randomUUID();
-    const lang = { name, id };
-    setLanguages([...languages, lang]);
-    setLangInput("");
+    const skill = { name, id };
+    setSkills([...skills, skill]);
+    setSkillInput("");
   }
 
-  const langJsx = languages.map((lang) => {
-    return (
-      <span key={lang.id}>
-        {lang.name}
-        <button onClick={() => langDeleteHandler(lang.id)}>X</button>
-      </span>
-    );
-  });
-
-  function frameworkInputHandler(e) {
-    setFrameworkInput(e.target.value);
+  function createSkillsJsx(skills, setSkills) {
+    return skills.map((skill) => {
+      return (
+        skill.name.trim() && (
+          <span key={skill.id}>
+            {skill.name}
+            <button
+              onClick={() => skillDeleteHandler(skill.id, skills, setSkills)}
+            >
+              X
+            </button>
+          </span>
+        )
+      );
+    });
   }
 
-  function frameworkDeleteHandler(id) {
-    const updatedFrameworksList = frameworks.filter(
-      (framework) => framework.id !== id
-    );
-    setFrameworks(updatedFrameworksList);
-  }
-
-  function frameworkSubmitHandler(e) {
-    e.preventDefault();
-    const name = e.target.framework.value;
-    const id = crypto.randomUUID();
-    const framework = { name, id };
-    setFrameworks([...frameworks, framework]);
-    setFrameworkInput("");
-  }
-
-  const frameworkJsx = frameworks.map((framework) => {
-    return (
-      <span key={framework.id}>
-        {framework.name}
-        <button onClick={() => frameworkDeleteHandler(framework.id)}>X</button>
-      </span>
-    );
-  });
-
-  function toolInputHandler(e) {
-    setToolInput(e.target.value);
-  }
-
-  function toolDeleteHandler(id) {
-    const updatedToolsList = tools.filter((tool) => tool.id !== id);
-    setTools(updatedToolsList);
-  }
-
-  function toolSubmitHandler(e) {
-    e.preventDefault();
-    const name = e.target.tool.value;
-    const id = crypto.randomUUID();
-    const tool = { name, id };
-    setTools([...tools, tool]);
-    setToolInput("");
-  }
-
-  const toolJsx = tools.map((tool) => {
-    return (
-      <span key={tool.id}>
-        {tool.name}
-        <button onClick={() => toolDeleteHandler(tool.id)}>X</button>
-      </span>
-    );
-  });
-
-    function libInputHandler(e) {
-    setLibInput(e.target.value);
-  }
-
-  function libDeleteHandler(id) {
-    const updatedLibsList = libraries.filter((lib) => lib.id !== id);
-    setLibraries(updatedLibsList);
-  }
-
-  function libSubmitHandler(e) {
-    e.preventDefault();
-    const name = e.target.library.value;
-    const id = crypto.randomUUID();
-    const lib = { name, id };
-    setLibraries([...libraries, lib]);
-    setLibInput("");
-  }
-
-  const libJsx = libraries.map((lib) => {
-    return (
-      <span key={lib.id}>
-        {lib.name}
-        <button onClick={() => libDeleteHandler(lib.id)}>X</button>
-      </span>
-    );
-  });
-
+  const langJsx = createSkillsJsx(languages, setLanguages);
+  const frameworkJsx = createSkillsJsx(frameworks, setFrameworks);
+  const toolJsx = createSkillsJsx(tools, setTools);
+  const libJsx = createSkillsJsx(libraries, setLibraries);
 
   return (
     <>
@@ -132,54 +74,91 @@ export function Skills({
       <SkillsForm
         name={"language"}
         label={"Languages: "}
-        input={langInput}
-        inputHandler={langInputHandler}
-        submitHandler={langSubmitHandler}
+        skillInput={langInput}
+        setSkillInput={setLangInput}
+        skills={languages}
+        setSkills={setLanguages}
+        skillInputHandler={skillInputHandler}
+        skillSubmitHandler={skillSubmitHandler}
       />
 
       <SkillsForm
         name={"framework"}
         label={"Frameworks: "}
-        input={frameworkInput}
-        inputHandler={frameworkInputHandler}
-        submitHandler={frameworkSubmitHandler}
+        skillInput={frameworkInput}
+        setSkillInput={setFrameworkInput}
+        skills={frameworks}
+        setSkills={setFrameworks}
+        skillInputHandler={skillInputHandler}
+        skillSubmitHandler={skillSubmitHandler}
       />
 
       <SkillsForm
         name={"tool"}
         label={"Tools: "}
-        input={toolInput}
-        inputHandler={toolInputHandler}
-        submitHandler={toolSubmitHandler}
+        skillInput={toolInput}
+        setSkillInput={setToolInput}
+        skills={tools}
+        setSkills={setTools}
+        skillInputHandler={skillInputHandler}
+        skillSubmitHandler={skillSubmitHandler}
       />
 
       <SkillsForm
         name={"library"}
         label={"Libraries: "}
-        input={libInput}
-        inputHandler={libInputHandler}
-        submitHandler={libSubmitHandler}
+        skillInput={libInput}
+        setSkillInput={setLibInput}
+        skills={libraries}
+        setSkills={setLibraries}
+        skillInputHandler={skillInputHandler}
+        skillSubmitHandler={skillSubmitHandler}
       />
 
-      <p>Added Languages: {langJsx}</p>
-      <p>Added Frameworks: {frameworkJsx}</p>
-      <p>Added Tools: {toolJsx}</p>
-      <p>Added Libraries: {libJsx}</p>
+      <p>
+        {languages.length > 0 && "Added Languages: "}
+        {langJsx}
+      </p>
+      <p>
+        {frameworks.length > 0 && "Added Frameworks: "}
+        {frameworkJsx}
+      </p>
+      <p>
+        {tools.length > 0 && "Added Tools: "}
+        {toolJsx}
+      </p>
+      <p>
+        {libraries.length > 0 && "Added Libraries: "}
+        {libJsx}
+      </p>
     </>
   );
 }
 
-function SkillsForm({ label, name, input, inputHandler, submitHandler }) {
+function SkillsForm({
+  name,
+  label,
+  skillInput,
+  setSkillInput,
+  skills,
+  setSkills,
+  skillInputHandler,
+  skillSubmitHandler,
+}) {
   return (
     <>
-      <form onSubmit={submitHandler}>
+      <form
+        onSubmit={(e) =>
+          skillSubmitHandler(e, name, skills, setSkills, setSkillInput)
+        }
+      >
         <label>
           {label}
           <input
             type="text"
             name={name}
-            onChange={inputHandler}
-            value={input}
+            onChange={(e) => skillInputHandler(e, setSkillInput)}
+            value={skillInput}
           />
         </label>
         <button type="submit">Add</button>
