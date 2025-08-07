@@ -37,24 +37,28 @@ export function Contact({ contact, setContact }) {
         <InputContact
           label="Phone Number: "
           name="number"
+          type="number"
           value={number}
           handleChange={(e) => handleChange(e, setNumber)}
         />
         <InputContact
           label="Email: "
           name="email"
+          type="email"
           value={email}
           handleChange={(e) => handleChange(e, setEmail)}
         />
         <InputContact
           label="LinkedIn: "
           name="linkedIn"
+          type="url"
           value={linkedIn}
           handleChange={(e) => handleChange(e, setLinkedIn)}
         />
         <InputContact
           label="Github: "
           name="github"
+          type="url"
           value={github}
           handleChange={(e) => handleChange(e, setGithub)}
         />
@@ -70,12 +74,12 @@ export function Contact({ contact, setContact }) {
   );
 }
 
-function InputContact({ label, text, name, handleChange }) {
+function InputContact({ type, label, text, name, handleChange }) {
   return (
     <div>
       <label htmlFor={name}>{label}</label>
       <input
-        type="text"
+        type={type}
         name={name}
         id={name}
         value={text}

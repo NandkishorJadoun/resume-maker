@@ -95,7 +95,6 @@ export function Experience({ experience, setExperience }) {
     <>
       <h2>Experience Details</h2>
 
-
       <ExperienceForm
         formHandler={formHandler}
         formData={formData}
@@ -103,7 +102,6 @@ export function Experience({ experience, setExperience }) {
         isEditing={isEditing}
         handleCancelEdit={handleCancelEdit}
       />
-
 
       {experience.length > 0 && <p>Submitted Experience:</p>}
       {experience.map((expEntry) => {
@@ -142,7 +140,7 @@ function ExperienceForm({
       <div>
         <label htmlFor="profession">Profession:</label>
         <input
-          type="text"
+        required
           name="profession"
           id="profession"
           onChange={formHandler}
@@ -153,7 +151,7 @@ function ExperienceForm({
       <div>
         <label htmlFor="company">Company:</label>
         <input
-          type="text"
+        required
           name="company"
           id="company"
           onChange={formHandler}
@@ -164,7 +162,6 @@ function ExperienceForm({
       <div>
         <label htmlFor="location">Location:</label>
         <input
-          type="text"
           name="location"
           id="location"
           onChange={formHandler}
@@ -175,7 +172,6 @@ function ExperienceForm({
       <div>
         <label htmlFor="startTime">Start Time:</label>
         <input
-          type="month"
           name="startTime"
           id="startTime"
           onChange={formHandler}
@@ -187,7 +183,6 @@ function ExperienceForm({
         <label htmlFor="endTime">
           End Time:
           <input
-            type="month"
             name="endTime"
             id="endTime"
             onChange={formHandler}

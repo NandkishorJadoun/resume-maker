@@ -90,7 +90,6 @@ export function Projects({ projects, setProjects }) {
     <>
       <h2>Projects Details</h2>
 
-
       <ProjectsForm
         formHandler={formHandler}
         formData={formData}
@@ -98,7 +97,6 @@ export function Projects({ projects, setProjects }) {
         isEditing={isEditing}
         handleCancelEdit={handleCancelEdit}
       />
-
 
       {projects.length > 0 && <p>Submitted Projects:</p>}
 
@@ -137,7 +135,7 @@ function ProjectsForm({
       <div>
         <label htmlFor="project">Project:</label>
         <input
-          type="text"
+          required
           name="project"
           id="project"
           onChange={formHandler}
@@ -146,9 +144,19 @@ function ProjectsForm({
       </div>
 
       <div>
+        <label htmlFor="stack">Stack:</label>
+        <input
+          required
+          id="stack"
+          name="stack"
+          onChange={formHandler}
+          value={formData.stack}
+        />
+      </div>
+
+      <div>
         <label htmlFor="startTime">Start Time:</label>
         <input
-          type="month"
           name="startTime"
           id="startTime"
           onChange={formHandler}
@@ -159,22 +167,10 @@ function ProjectsForm({
       <div>
         <label htmlFor="endTime">End Time:</label>
         <input
-          type="month"
           name="endTime"
           id="endTime"
           onChange={formHandler}
           value={formData.endTime}
-        />
-      </div>
-
-      <div>
-        <label htmlFor="stack">Stack:</label>
-        <input
-          type="text"
-          id="stack"
-          name="stack"
-          onChange={formHandler}
-          value={formData.stack}
         />
       </div>
 

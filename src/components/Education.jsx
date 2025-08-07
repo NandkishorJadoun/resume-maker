@@ -82,7 +82,6 @@ export function Education({ education, setEducation }) {
     <>
       <h2>Education Details</h2>
 
-
       <EducationForm
         formHandler={formHandler}
         formData={formData}
@@ -90,7 +89,6 @@ export function Education({ education, setEducation }) {
         isEditing={isEditing}
         handleCancelEdit={handleCancelEdit}
       />
-
 
       {education.length > 0 && <p>Submitted Education:</p>}
 
@@ -127,7 +125,7 @@ function EducationForm({
         <div>
           <label htmlFor="college">College:</label>
           <input
-            type="text"
+            required
             onChange={formHandler}
             value={formData.college}
             name="college"
@@ -138,7 +136,7 @@ function EducationForm({
         <div>
           <label htmlFor="degree">Degree:</label>
           <input
-            type="text"
+            required
             name="degree"
             id="degree"
             onChange={formHandler}
@@ -149,7 +147,6 @@ function EducationForm({
         <div>
           <label htmlFor="location">Location:</label>
           <input
-            type="text"
             name="location"
             id="location"
             onChange={formHandler}
@@ -160,7 +157,6 @@ function EducationForm({
         <div>
           <label htmlFor="startTime">Start Time:</label>
           <input
-            type="month"
             onChange={formHandler}
             name="startTime"
             id="startTime"
@@ -171,7 +167,6 @@ function EducationForm({
         <div>
           <label htmlFor="endTime">End Time:</label>
           <input
-            type="month"
             onChange={formHandler}
             name="endTime"
             id="endTime"

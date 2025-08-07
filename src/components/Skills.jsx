@@ -155,7 +155,6 @@ function SkillsForm({
         <div>
           <label htmlFor={name}>{label}</label>
           <input
-            type="text"
             name={name}
             id={name}
             onChange={(e) => skillInputHandler(e, setSkillInput)}

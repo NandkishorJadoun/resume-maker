@@ -44,7 +44,6 @@ function InputName({ label, text, name, handleChange }) {
     <div>
       <label htmlFor={name}> {label}</label>
       <input
-        type="text"
         name={name}
         value={text}
         onChange={handleChange}
