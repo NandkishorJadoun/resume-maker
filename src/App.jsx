@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { Name } from "./Name";
-import { Contact } from "./Contact";
-import { Education } from "./Education";
-import { Skills } from "./Skills";
-import { Experience } from "./Experience";
-import { Projects } from "./Projects";
+import { Name } from "./components/Name";
+import { Contact } from "./components/Contact";
+import { Education } from "./components/Education";
+import { Skills } from "./components/Skills";
+import { Experience } from "./components/Experience";
+import { Projects } from "./components/Projects";
 
 function App() {
   const [name, setName] = useState({ first: "", last: "" });
