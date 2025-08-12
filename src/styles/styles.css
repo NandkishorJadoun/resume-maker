@@ -1,0 +1,185 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #F4F6F9;
+    font-size: 1rem;
+}
+
+#root {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+header {
+    background-color: #FFFFFF;
+    color: #212121;
+    border-bottom: 1px solid #E0E0E0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+}
+
+header h1 {
+    font-size: 2.5rem;
+}
+
+nav {
+    color: #6C757D;
+    border: 1px solid #E0E0E0;
+}
+
+main {
+    display: grid;
+    grid-template-columns: 35% 1fr;
+}
+
+input,
+button,
+textarea {
+    font: inherit;
+}
+
+input,
+textarea {
+    background-color: #F4F6F9;
+    border: 1px solid #E0E0E0;
+    color: #212121;
+    padding: 4px;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 5rem;
+}
+
+label {
+    color: #6C757D;
+    text-transform: uppercase;
+}
+
+h2 {
+    color: #3A86FF;
+}
+
+form {
+    display: grid;
+    gap: 1rem;
+}
+
+form>div {
+    display: grid;
+}
+
+form button {
+    background-color: #3A86FF;
+    padding: 4px 12px;
+    color: #FFFFFF;
+    border: none;
+    font-weight: bold;
+    justify-self: center;
+}
+
+.input-section {
+    background-color: #F4F6F9;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 0.5rem;
+}
+
+.resume-section {
+    background-color: #FFFFFF;
+    border-radius: 8px;
+    border: 1px solid #E0E0E0;
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.resume-section>p {
+    color: #3A86FF;
+    font-size: 1.25rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+.entry-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.entry-container button {
+    padding: 4px 12px;
+    color: #FFFFFF;
+    border: none;
+    font-weight: bold;
+}
+
+.btn-container {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+}
+
+.entry-container ul {
+    margin-top: 4px;
+    padding-left: 16px;
+}
+
+.edit {
+    background-color: hsl(211, 100%, 26%);
+}
+
+.delete,
+.cancel,
+.remove {
+    background-color: hsl(354, 75%, 51%);
+}
+
+#skills-form {
+    grid-template-columns: 1fr auto;
+    gap: 6px;
+}
+
+#skills-form button {
+    font-size: 24px;
+    padding: 0 8px;
+    align-self: flex-end;
+}
+
+.skills-section > div{
+    color: #3A86FF;
+    font-weight: bold;
+}
+
+.skills-section > div:first-of-type{
+    margin-top: 12px;
+}
+
+.skills-section span {
+    color: black;
+    margin-right: 10px;
+    font-weight: normal;
+}
+
+.remove {
+    color: #FFFFFF;
+    padding: 0 4px;
+    justify-content: center;
+    border: 0;
+}
+
+.preview-section {
+    background-color: #F4F6F9;
+    padding: 8px;
+}
