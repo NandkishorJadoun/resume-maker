@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export function Contact({ contact, setContact }) {
+export function Contact({ setContact }) {
   const [number, setNumber] = useState("");
   const [email, setEmail] = useState("");
   const [linkedIn, setLinkedIn] = useState("");
@@ -21,17 +21,8 @@ export function Contact({ contact, setContact }) {
     });
   }
 
-  const contactJsx = (
-    <p>
-      Contacts: {contact.number && contact.number + " | "}
-      {contact.email && contact.email + " | "}
-      {contact.linkedIn && contact.linkedIn + " | "}
-      {contact.github && contact.github}
-    </p>
-  );
-
   return (
-    <>
+    <div class="resume-section contact-section">
       <h2>Contact Details: </h2>
       <form onSubmit={submitHandler}>
         <InputContact
@@ -65,12 +56,7 @@ export function Contact({ contact, setContact }) {
 
         <button type="submit">Submit</button>
       </form>
-      {(contact.number ||
-        contact.email ||
-        contact.linkedIn ||
-        contact.github) &&
-        contactJsx}
-    </>
+    </div>
   );
 }
 

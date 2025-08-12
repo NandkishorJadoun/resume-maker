@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export function Name({ name, setName }) {
+export function Name({ setName }) {
   const [first, setFirst] = useState("");
   const [last, setLast] = useState("");
 
@@ -14,10 +14,10 @@ export function Name({ name, setName }) {
     setInputName(eventValue);
   }
 
-  const fullNameJsx = <p>Full Name: {name.first + " " + name.last}</p>;
+
 
   return (
-    <>
+    <div class="resume-section name-section">
       <h2>Write your name:</h2>
       <form onSubmit={submitHandler}>
         <InputName
@@ -34,8 +34,7 @@ export function Name({ name, setName }) {
         />
         <button type="submit">Submit</button>
       </form>
-      {(name.first || name.last) && fullNameJsx}
-    </>
+    </div>
   );
 }
 
@@ -43,12 +42,7 @@ function InputName({ label, text, name, handleChange }) {
   return (
     <div>
       <label htmlFor={name}> {label}</label>
-      <input
-        name={name}
-        value={text}
-        onChange={handleChange}
-        id={name}
-      />
+      <input name={name} value={text} onChange={handleChange} id={name} />
     </div>
   );
 }

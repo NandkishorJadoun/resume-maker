@@ -51,11 +51,12 @@ export function Skills({
       return (
         skill.name.trim() && (
           <span key={skill.id}>
-            {skill.name}
+            {skill.name + " "}
             <button
+              className="remove"
               onClick={() => skillDeleteHandler(skill.id, skills, setSkills)}
             >
-              X
+              &#x2715;
             </button>
           </span>
         )
@@ -69,7 +70,7 @@ export function Skills({
   const libJsx = createSkillsJsx(libraries, setLibraries);
 
   return (
-    <>
+    <div class="resume-section skills-section">
       <h2>Skills</h2>
       <SkillsForm
         name={"language"}
@@ -115,23 +116,11 @@ export function Skills({
         skillSubmitHandler={skillSubmitHandler}
       />
 
-      <p>
-        {languages.length > 0 && "Added Languages: "}
-        {langJsx}
-      </p>
-      <p>
-        {frameworks.length > 0 && "Added Frameworks: "}
-        {frameworkJsx}
-      </p>
-      <p>
-        {tools.length > 0 && "Added Tools: "}
-        {toolJsx}
-      </p>
-      <p>
-        {libraries.length > 0 && "Added Libraries: "}
-        {libJsx}
-      </p>
-    </>
+      {languages.length > 0 && <div>Added Languages: {langJsx}</div>}
+      {frameworks.length > 0 && <div>Added Frameworks: {frameworkJsx}</div>}
+      {tools.length > 0 && <div>Added Tools: {toolJsx}</div>}
+      {libraries.length > 0 && <div>Added Libraries: {libJsx}</div>}
+    </div>
   );
 }
 
@@ -148,6 +137,7 @@ function SkillsForm({
   return (
     <>
       <form
+        id="skills-form"
         onSubmit={(e) =>
           skillSubmitHandler(e, name, skills, setSkills, setSkillInput)
         }
@@ -161,8 +151,8 @@ function SkillsForm({
             value={skillInput}
           />
         </div>
-        
-        <button type="submit">Add</button>
+
+        <button type="submit">+</button>
       </form>
     </>
   );

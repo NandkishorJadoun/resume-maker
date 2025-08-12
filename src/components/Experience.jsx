@@ -36,12 +36,12 @@ export function Experience({ experience, setExperience }) {
       setEditId(null);
     } else {
       const makeBulletPoints = formData.responsibilities.split("\n");
-      const expEntry = {
+      const entry = {
         ...formData,
         id: crypto.randomUUID(),
         responsibilities: makeBulletPoints,
       };
-      setExperience([...experience, expEntry]);
+      setExperience([...experience, entry]);
     }
     setFormData({
       profession: "",
@@ -92,7 +92,7 @@ export function Experience({ experience, setExperience }) {
   }
 
   return (
-    <>
+    <div class="resume-section experience-section">
       <h2>Experience Details</h2>
 
       <ExperienceForm
@@ -104,27 +104,50 @@ export function Experience({ experience, setExperience }) {
       />
 
       {experience.length > 0 && <p>Submitted Experience:</p>}
-      {experience.map((expEntry) => {
-        return (
-          <div key={expEntry.id}>
-            <p>Profession: {expEntry.profession}</p>
-            <p>Company: {expEntry.company}</p>
-            <p>Location: {expEntry.location}</p>
-            <p>Start Time: {expEntry.startTime}</p>
-            <p>End Time: {expEntry.endTime}</p>
-            <ul>
-              Responsibilities:
-              {expEntry.responsibilities.map((point, index) => {
-                return point.trim() && <li key={index}>{point}</li>;
-              })}
-            </ul>
-            <p>Id: {expEntry.id}</p>
-            <button onClick={() => handleDelete(expEntry.id)}>Delete</button>
-            <button onClick={() => handleEdit(expEntry)}>Edit</button>
-          </div>
-        );
-      })}
-    </>
+
+      {experience.length > 0 && (
+        <div className="entry-container">
+          {experience.map((entry) => {
+            return (
+              <div key={entry.id} className="entry">
+                <p>Profession: {entry.profession}</p>
+                <p>Company: {entry.company}</p>
+                {entry.location && <p>Location: {entry.location}</p>}
+                {entry.startTime && (
+                  <p>
+                    Time: {entry.startTime}
+                    {entry.endTime && " \u2013 " + entry.endTime}
+                  </p>
+                )}
+
+                {entry.responsibilities[0] && (
+                  <>
+                    <p>Responsibilities:</p>
+                    <ul>
+                      {entry.responsibilities.map((point, index) => {
+                        return point.trim() && <li key={index}>{point}</li>;
+                      })}
+                    </ul>
+                  </>
+                )}
+
+                <div className="btn-container">
+                  <button
+                    className="delete"
+                    onClick={() => handleDelete(entry.id)}
+                  >
+                    Delete
+                  </button>
+                  <button className="edit" onClick={() => handleEdit(entry)}>
+                    Edit
+                  </button>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      )}
+    </div>
   );
 }
 
@@ -140,7 +163,7 @@ function ExperienceForm({
       <div>
         <label htmlFor="profession">Profession:</label>
         <input
-        required
+          required
           name="profession"
           id="profession"
           onChange={formHandler}
@@ -151,7 +174,7 @@ function ExperienceForm({
       <div>
         <label htmlFor="company">Company:</label>
         <input
-        required
+          required
           name="company"
           id="company"
           onChange={formHandler}
@@ -180,15 +203,13 @@ function ExperienceForm({
       </div>
 
       <div>
-        <label htmlFor="endTime">
-          End Time:
-          <input
-            name="endTime"
-            id="endTime"
-            onChange={formHandler}
-            value={formData.endTime}
-          />
-        </label>
+        <label htmlFor="endTime">End Time:</label>
+        <input
+          name="endTime"
+          id="endTime"
+          onChange={formHandler}
+          value={formData.endTime}
+        />
       </div>
 
       <div>
@@ -201,13 +222,15 @@ function ExperienceForm({
         ></textarea>
       </div>
 
-      <button type="submit">{isEditing ? "Save" : "Submit"}</button>
+      <div className="btn-container">
+        <button type="submit">{isEditing ? "Save" : "Submit"}</button>
 
-      {isEditing && (
-        <button onClick={handleCancelEdit} type="button">
-          Cancel
-        </button>
-      )}
+        {isEditing && (
+          <button className="cancel" onClick={handleCancelEdit} type="button">
+            Cancel
+          </button>
+        )}
+      </div>
     </form>
   );
 }

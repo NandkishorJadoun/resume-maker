@@ -87,7 +87,7 @@ export function Projects({ projects, setProjects }) {
   }
 
   return (
-    <>
+    <div class="resume-section projects-section">
       <h2>Projects Details</h2>
 
       <ProjectsForm
@@ -100,26 +100,48 @@ export function Projects({ projects, setProjects }) {
 
       {projects.length > 0 && <p>Submitted Projects:</p>}
 
-      {projects.map((project) => {
-        return (
-          <div key={project.id}>
-            <p>Project: {project.name}</p>
-            <p>Start Time: {project.startTime}</p>
-            <p>End Time: {project.endTime}</p>
-            <p>Stack: {project.stack}</p>
-            <ul>
-              Features:
-              {project.features.map((feature, index) => {
-                return feature.trim() && <li key={index}>{feature}</li>;
-              })}
-            </ul>
-            <p>Id: {project.id}</p>
-            <button onClick={() => handleDelete(project.id)}>Delete</button>
-            <button onClick={() => handleEdit(project)}>Edit</button>
-          </div>
-        );
-      })}
-    </>
+      {projects.length > 0 && (
+        <div className="entry-container">
+          {projects.map((entry) => {
+            return (
+              <div key={entry.id}>
+                <p>Project: {entry.name}</p>
+                <p>Stack: {entry.stack}</p>
+                {entry.startTime && (
+                  <p>
+                    Time: {entry.startTime}
+                    {entry.endTime && " \u2013 " + entry.endTime}
+                  </p>
+                )}
+
+                {entry.features[0] && (
+                  <>
+                    <p>Features:</p>
+                    <ul>
+                      {entry.features.map((point, index) => {
+                        return point.trim() && <li key={index}>{point}</li>;
+                      })}
+                    </ul>
+                  </>
+                )}
+
+                <div className="btn-container">
+                  <button
+                    className="delete"
+                    onClick={() => handleDelete(entry.id)}
+                  >
+                    Delete
+                  </button>
+                  <button className="edit" onClick={() => handleEdit(entry)}>
+                    Edit
+                  </button>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      )}
+    </div>
   );
 }
 
@@ -184,13 +206,15 @@ function ProjectsForm({
         ></textarea>
       </div>
 
-      <button type="submit">{isEditing ? "Save" : "Submit"}</button>
+      <div className="btn-container">
+        <button type="submit">{isEditing ? "Save" : "Submit"}</button>
 
-      {isEditing && (
-        <button onClick={handleCancelEdit} type="button">
-          Cancel
-        </button>
-      )}
+        {isEditing && (
+          <button className="cancel" onClick={handleCancelEdit} type="button">
+            Cancel
+          </button>
+        )}
+      </div>
     </form>
   );
 }

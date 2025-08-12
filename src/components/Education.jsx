@@ -79,7 +79,7 @@ export function Education({ education, setEducation }) {
   }
 
   return (
-    <>
+    <div class="resume-section education-section">
       <h2>Education Details</h2>
 
       <EducationForm
@@ -92,23 +92,37 @@ export function Education({ education, setEducation }) {
 
       {education.length > 0 && <p>Submitted Education:</p>}
 
-      {education.map((educationEntry) => {
-        return (
-          <div key={educationEntry.id}>
-            <p>College: {educationEntry.college}</p>
-            <p>Degree: {educationEntry.degree}</p>
-            <p>Location: {educationEntry.location}</p>
-            <p>Start Time: {educationEntry.startTime}</p>
-            <p>End Time: {educationEntry.endTime}</p>
-            <p>Id: {educationEntry.id}</p>
-            <button onClick={() => handleDelete(educationEntry.id)}>
-              Delete
-            </button>
-            <button onClick={() => handleEdit(educationEntry)}>Edit</button>
-          </div>
-        );
-      })}
-    </>
+      {education.length > 0 && (
+        <div className="entry-container">
+          {education.map((entry) => {
+            return (
+              <div key={entry.id} className="entry">
+                <p>College: {entry.college}</p>
+                <p>Degree: {entry.degree}</p>
+                {entry.location && <p>Location: {entry.location}</p>}
+                {entry.startTime && (
+                  <p>
+                    Time: {entry.startTime}
+                    {entry.endTime && " \u2013 " + entry.endTime}
+                  </p>
+                )}
+                <div className="btn-container">
+                  <button
+                    className="delete"
+                    onClick={() => handleDelete(entry.id)}
+                  >
+                    Delete
+                  </button>
+                  <button className="edit" onClick={() => handleEdit(entry)}>
+                    Edit
+                  </button>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      )}
+    </div>
   );
 }
 
@@ -120,68 +134,68 @@ function EducationForm({
   handleCancelEdit,
 }) {
   return (
-    <>
-      <form onSubmit={submitHandler}>
-        <div>
-          <label htmlFor="college">College:</label>
-          <input
-            required
-            onChange={formHandler}
-            value={formData.college}
-            name="college"
-            id="college"
-          />
-        </div>
+    <form onSubmit={submitHandler}>
+      <div>
+        <label htmlFor="college">College:</label>
+        <input
+          required
+          onChange={formHandler}
+          value={formData.college}
+          name="college"
+          id="college"
+        />
+      </div>
 
-        <div>
-          <label htmlFor="degree">Degree:</label>
-          <input
-            required
-            name="degree"
-            id="degree"
-            onChange={formHandler}
-            value={formData.degree}
-          />
-        </div>
+      <div>
+        <label htmlFor="degree">Degree:</label>
+        <input
+          required
+          name="degree"
+          id="degree"
+          onChange={formHandler}
+          value={formData.degree}
+        />
+      </div>
 
-        <div>
-          <label htmlFor="location">Location:</label>
-          <input
-            name="location"
-            id="location"
-            onChange={formHandler}
-            value={formData.location}
-          />
-        </div>
+      <div>
+        <label htmlFor="location">Location:</label>
+        <input
+          name="location"
+          id="location"
+          onChange={formHandler}
+          value={formData.location}
+        />
+      </div>
 
-        <div>
-          <label htmlFor="startTime">Start Time:</label>
-          <input
-            onChange={formHandler}
-            name="startTime"
-            id="startTime"
-            value={formData.startTime}
-          />
-        </div>
+      <div>
+        <label htmlFor="startTime">Start Time:</label>
+        <input
+          onChange={formHandler}
+          name="startTime"
+          id="startTime"
+          value={formData.startTime}
+        />
+      </div>
 
-        <div>
-          <label htmlFor="endTime">End Time:</label>
-          <input
-            onChange={formHandler}
-            name="endTime"
-            id="endTime"
-            value={formData.endTime}
-          />
-        </div>
+      <div>
+        <label htmlFor="endTime">End Time:</label>
+        <input
+          onChange={formHandler}
+          name="endTime"
+          id="endTime"
+          value={formData.endTime}
+        />
+      </div>
 
+      <div className="btn-container">
         <button type="submit">{isEditing ? "Save" : "Submit"}</button>
 
         {isEditing && (
-          <button onClick={handleCancelEdit} type="button">
+          <button onClick={handleCancelEdit} type="button" className="cancel">
             Cancel
           </button>
         )}
-      </form>
-    </>
+      </div>
+    </form>
   );
 }
