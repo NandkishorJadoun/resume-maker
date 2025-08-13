@@ -7,12 +7,26 @@
     --border-color: #E0E0E0;
     --delete-color: hsl(354, 75%, 51%);
     --edit-color: hsl(211, 100%, 26%);
+    --icon-color: hsl(0, 0%, 100%);
+}
+
+[data-theme=dark] {
+    --primary-color: #3A86FF;
+    --delete-color: hsl(354, 70%, 56%);
+    --edit-color: hsl(210, 70%, 56%);
+    --text-color-primary: #E4E6EB;
+    --text-color-secondary: #A1A6B0;
+    --background-color-primary: #121417;
+    --background-color-secondary: #1E2227;
+    --border-color: #2A2F36;
+    --icon-color: hsl(217, 100%, 61%);
 }
 
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    transition: 0.2s ease-out;
 }
 
 body {
@@ -24,6 +38,10 @@ body {
 #root {
     max-width: 1200px;
     margin: 0 auto;
+}
+
+button {
+    cursor: pointer;
 }
 
 ul {
@@ -74,8 +92,19 @@ header h1 {
 
 nav {
     color: var(--text-color-secondary);
-    border: 1px solid var(--border-color);
+    display: flex;
+    gap: 1rem;
 }
+
+nav button {
+    display: flex;
+    background-color: var(--icon-color);
+    border: none;
+    border-radius: 50%;
+    padding: 4px;
+}
+
+
 
 main {
     display: grid;
@@ -145,6 +174,10 @@ form button {
     font-weight: bold;
 }
 
+.entry {
+    color: var(--text-color-primary);
+}
+
 form button {
     background-color: var(--primary-color);
     justify-self: center;
@@ -161,7 +194,7 @@ form button {
 }
 
 .edit {
-    background-color: hsl(211, 100%, 26%);
+    background-color: var(--edit-color);
 }
 
 .delete,
@@ -278,3 +311,11 @@ form button {
 .resume-skills>div:first-of-type {
     margin-top: 4px;
 }
+
+.resume-section>h2 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
