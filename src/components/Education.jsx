@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export function Education({ education, setEducation }) {
+export function Education({ education, setEducation, isActive, onShow }) {
   const [editId, setEditId] = useState(null);
   const [formData, setFormData] = useState({
     college: "",
@@ -80,47 +80,57 @@ export function Education({ education, setEducation }) {
 
   return (
     <div className="resume-section education-section">
-      <h2>Education Details</h2>
+      <h2 onClick={onShow}>
+        <p>Education Details</p>
+        <button>&#8964;</button>
+      </h2>
 
-      <EducationForm
-        formHandler={formHandler}
-        formData={formData}
-        submitHandler={submitHandler}
-        isEditing={isEditing}
-        handleCancelEdit={handleCancelEdit}
-      />
+      {isActive && (
+        <>
+          <EducationForm
+            formHandler={formHandler}
+            formData={formData}
+            submitHandler={submitHandler}
+            isEditing={isEditing}
+            handleCancelEdit={handleCancelEdit}
+          />
 
-      {education.length > 0 && <p>Submitted Education:</p>}
+          {education.length > 0 && <p>Submitted Education:</p>}
 
-      {education.length > 0 && (
-        <div className="entry-container">
-          {education.map((entry) => {
-            return (
-              <div key={entry.id} className="entry">
-                <p>College: {entry.college}</p>
-                <p>Degree: {entry.degree}</p>
-                {entry.location && <p>Location: {entry.location}</p>}
-                {entry.startTime && (
-                  <p>
-                    Time: {entry.startTime}
-                    {entry.endTime && " \u2013 " + entry.endTime}
-                  </p>
-                )}
-                <div className="btn-container">
-                  <button
-                    className="delete"
-                    onClick={() => handleDelete(entry.id)}
-                  >
-                    Delete
-                  </button>
-                  <button className="edit" onClick={() => handleEdit(entry)}>
-                    Edit
-                  </button>
-                </div>
-              </div>
-            );
-          })}
-        </div>
+          {education.length > 0 && (
+            <div className="entry-container">
+              {education.map((entry) => {
+                return (
+                  <div key={entry.id} className="entry">
+                    <p>College: {entry.college}</p>
+                    <p>Degree: {entry.degree}</p>
+                    {entry.location && <p>Location: {entry.location}</p>}
+                    {entry.startTime && (
+                      <p>
+                        Time: {entry.startTime}
+                        {entry.endTime && " \u2013 " + entry.endTime}
+                      </p>
+                    )}
+                    <div className="btn-container">
+                      <button
+                        className="delete"
+                        onClick={() => handleDelete(entry.id)}
+                      >
+                        Delete
+                      </button>
+                      <button
+                        className="edit"
+                        onClick={() => handleEdit(entry)}
+                      >
+                        Edit
+                      </button>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          )}
+        </>
       )}
     </div>
   );

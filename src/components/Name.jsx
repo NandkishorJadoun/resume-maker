@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export function Name({ setName }) {
+export function Name({ setName, isActive, onShow }) {
   const [first, setFirst] = useState("");
   const [last, setLast] = useState("");
 
@@ -14,26 +14,30 @@ export function Name({ setName }) {
     setInputName(eventValue);
   }
 
-
-
   return (
     <div className="resume-section name-section">
-      <h2>Write your name:</h2>
-      <form onSubmit={submitHandler}>
-        <InputName
-          name={"first"}
-          text={first}
-          label={"First name: "}
-          handleChange={(e) => handleChange(e, setFirst)}
-        />
-        <InputName
-          name={"last"}
-          text={last}
-          label={"Last name: "}
-          handleChange={(e) => handleChange(e, setLast)}
-        />
-        <button type="submit">Submit</button>
-      </form>
+      <h2 onClick={onShow}>
+        <p>Name Details</p>
+        <button>&#8964;</button>
+      </h2>
+
+      {isActive && (
+        <form onSubmit={submitHandler}>
+          <InputName
+            name={"first"}
+            text={first}
+            label={"First name: "}
+            handleChange={(e) => handleChange(e, setFirst)}
+          />
+          <InputName
+            name={"last"}
+            text={last}
+            label={"Last name: "}
+            handleChange={(e) => handleChange(e, setLast)}
+          />
+          <button type="submit">Submit</button>
+        </form>
+      )}
     </div>
   );
 }

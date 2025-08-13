@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export function Contact({ setContact }) {
+export function Contact({ setContact, isActive, onShow }) {
   const [number, setNumber] = useState("");
   const [email, setEmail] = useState("");
   const [linkedIn, setLinkedIn] = useState("");
@@ -23,36 +23,41 @@ export function Contact({ setContact }) {
 
   return (
     <div className="resume-section contact-section">
-      <h2>Contact Details: </h2>
-      <form onSubmit={submitHandler}>
-        <InputContact
-          label="Phone Number: "
-          name="number"
-          type="number"
-          value={number}
-          handleChange={(e) => handleChange(e, setNumber)}
-        />
-        <InputContact
-          label="Email: "
-          name="email"
-          value={email}
-          handleChange={(e) => handleChange(e, setEmail)}
-        />
-        <InputContact
-          label="LinkedIn: "
-          name="linkedIn"
-          value={linkedIn}
-          handleChange={(e) => handleChange(e, setLinkedIn)}
-        />
-        <InputContact
-          label="Github: "
-          name="github"
-          value={github}
-          handleChange={(e) => handleChange(e, setGithub)}
-        />
+      <h2 onClick={onShow}>
+        <p>Contact Details</p>
+        <button >&#8964;</button>
+      </h2>
+      {isActive && (
+        <form onSubmit={submitHandler}>
+          <InputContact
+            label="Phone Number: "
+            name="number"
+            type="number"
+            value={number}
+            handleChange={(e) => handleChange(e, setNumber)}
+          />
+          <InputContact
+            label="Email: "
+            name="email"
+            value={email}
+            handleChange={(e) => handleChange(e, setEmail)}
+          />
+          <InputContact
+            label="LinkedIn: "
+            name="linkedIn"
+            value={linkedIn}
+            handleChange={(e) => handleChange(e, setLinkedIn)}
+          />
+          <InputContact
+            label="Github: "
+            name="github"
+            value={github}
+            handleChange={(e) => handleChange(e, setGithub)}
+          />
 
-        <button type="submit">Submit</button>
-      </form>
+          <button type="submit">Submit</button>
+        </form>
+      )}
     </div>
   );
 }

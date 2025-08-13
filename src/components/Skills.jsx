@@ -9,6 +9,8 @@ export function Skills({
   setTools,
   libraries,
   setLibraries,
+  isActive,
+  onShow,
 }) {
   const [langInput, setLangInput] = useState("");
   const [frameworkInput, setFrameworkInput] = useState("");
@@ -51,7 +53,7 @@ export function Skills({
       return (
         skill.name.trim() && (
           <span key={skill.id}>
-            {skill.name + " "}
+            {skill.name}
             <button
               className="remove"
               onClick={() => skillDeleteHandler(skill.id, skills, setSkills)}
@@ -71,55 +73,62 @@ export function Skills({
 
   return (
     <div className="resume-section skills-section">
-      <h2>Skills</h2>
-      <SkillsForm
-        name={"language"}
-        label={"Languages: "}
-        skillInput={langInput}
-        setSkillInput={setLangInput}
-        skills={languages}
-        setSkills={setLanguages}
-        skillInputHandler={skillInputHandler}
-        skillSubmitHandler={skillSubmitHandler}
-      />
+      <h2 onClick={onShow}>
+        <p>Skills</p>
+        <button>&#8964;</button>
+      </h2>
+      {isActive && (
+        <>
+          <SkillsForm
+            name={"language"}
+            label={"Languages: "}
+            skillInput={langInput}
+            setSkillInput={setLangInput}
+            skills={languages}
+            setSkills={setLanguages}
+            skillInputHandler={skillInputHandler}
+            skillSubmitHandler={skillSubmitHandler}
+          />
 
-      <SkillsForm
-        name={"framework"}
-        label={"Frameworks: "}
-        skillInput={frameworkInput}
-        setSkillInput={setFrameworkInput}
-        skills={frameworks}
-        setSkills={setFrameworks}
-        skillInputHandler={skillInputHandler}
-        skillSubmitHandler={skillSubmitHandler}
-      />
+          <SkillsForm
+            name={"framework"}
+            label={"Frameworks: "}
+            skillInput={frameworkInput}
+            setSkillInput={setFrameworkInput}
+            skills={frameworks}
+            setSkills={setFrameworks}
+            skillInputHandler={skillInputHandler}
+            skillSubmitHandler={skillSubmitHandler}
+          />
 
-      <SkillsForm
-        name={"tool"}
-        label={"Tools: "}
-        skillInput={toolInput}
-        setSkillInput={setToolInput}
-        skills={tools}
-        setSkills={setTools}
-        skillInputHandler={skillInputHandler}
-        skillSubmitHandler={skillSubmitHandler}
-      />
+          <SkillsForm
+            name={"tool"}
+            label={"Tools: "}
+            skillInput={toolInput}
+            setSkillInput={setToolInput}
+            skills={tools}
+            setSkills={setTools}
+            skillInputHandler={skillInputHandler}
+            skillSubmitHandler={skillSubmitHandler}
+          />
 
-      <SkillsForm
-        name={"library"}
-        label={"Libraries: "}
-        skillInput={libInput}
-        setSkillInput={setLibInput}
-        skills={libraries}
-        setSkills={setLibraries}
-        skillInputHandler={skillInputHandler}
-        skillSubmitHandler={skillSubmitHandler}
-      />
+          <SkillsForm
+            name={"library"}
+            label={"Libraries: "}
+            skillInput={libInput}
+            setSkillInput={setLibInput}
+            skills={libraries}
+            setSkills={setLibraries}
+            skillInputHandler={skillInputHandler}
+            skillSubmitHandler={skillSubmitHandler}
+          />
 
-      {languages.length > 0 && <div>Added Languages: {langJsx}</div>}
-      {frameworks.length > 0 && <div>Added Frameworks: {frameworkJsx}</div>}
-      {tools.length > 0 && <div>Added Tools: {toolJsx}</div>}
-      {libraries.length > 0 && <div>Added Libraries: {libJsx}</div>}
+          {languages.length > 0 && <div>Added Languages: {langJsx}</div>}
+          {frameworks.length > 0 && <div>Added Frameworks: {frameworkJsx}</div>}
+          {tools.length > 0 && <div>Added Tools: {toolJsx}</div>}
+          {libraries.length > 0 && <div>Added Libraries: {libJsx}</div>}
+        </>
+      )}
     </div>
   );
 }

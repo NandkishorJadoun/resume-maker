@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export function Experience({ experience, setExperience }) {
+export function Experience({ experience, setExperience, isActive, onShow }) {
   const [editId, setEditId] = useState(null);
   const [formData, setFormData] = useState({
     profession: "",
@@ -93,59 +93,69 @@ export function Experience({ experience, setExperience }) {
 
   return (
     <div className="resume-section experience-section">
-      <h2>Experience Details</h2>
+      <h2 onClick={onShow}>
+        <p>Experience Details</p>
+        <button onClick={onShow}>&#8964;</button>
+      </h2>
 
-      <ExperienceForm
-        formHandler={formHandler}
-        formData={formData}
-        submitHandler={submitHandler}
-        isEditing={isEditing}
-        handleCancelEdit={handleCancelEdit}
-      />
+      {isActive && (
+        <>
+          <ExperienceForm
+            formHandler={formHandler}
+            formData={formData}
+            submitHandler={submitHandler}
+            isEditing={isEditing}
+            handleCancelEdit={handleCancelEdit}
+          />
 
-      {experience.length > 0 && <p>Submitted Experience:</p>}
+          {experience.length > 0 && <p>Submitted Experience:</p>}
 
-      {experience.length > 0 && (
-        <div className="entry-container">
-          {experience.map((entry) => {
-            return (
-              <div key={entry.id} className="entry">
-                <p>Profession: {entry.profession}</p>
-                <p>Company: {entry.company}</p>
-                {entry.location && <p>Location: {entry.location}</p>}
-                {entry.startTime && (
-                  <p>
-                    Time: {entry.startTime}
-                    {entry.endTime && " \u2013 " + entry.endTime}
-                  </p>
-                )}
+          {experience.length > 0 && (
+            <div className="entry-container">
+              {experience.map((entry) => {
+                return (
+                  <div key={entry.id} className="entry">
+                    <p>Profession: {entry.profession}</p>
+                    <p>Company: {entry.company}</p>
+                    {entry.location && <p>Location: {entry.location}</p>}
+                    {entry.startTime && (
+                      <p>
+                        Time: {entry.startTime}
+                        {entry.endTime && " \u2013 " + entry.endTime}
+                      </p>
+                    )}
 
-                {entry.responsibilities[0] && (
-                  <>
-                    <p>Responsibilities:</p>
-                    <ul>
-                      {entry.responsibilities.map((point, index) => {
-                        return point.trim() && <li key={index}>{point}</li>;
-                      })}
-                    </ul>
-                  </>
-                )}
+                    {entry.responsibilities[0] && (
+                      <>
+                        <p>Responsibilities:</p>
+                        <ul>
+                          {entry.responsibilities.map((point, index) => {
+                            return point.trim() && <li key={index}>{point}</li>;
+                          })}
+                        </ul>
+                      </>
+                    )}
 
-                <div className="btn-container">
-                  <button
-                    className="delete"
-                    onClick={() => handleDelete(entry.id)}
-                  >
-                    Delete
-                  </button>
-                  <button className="edit" onClick={() => handleEdit(entry)}>
-                    Edit
-                  </button>
-                </div>
-              </div>
-            );
-          })}
-        </div>
+                    <div className="btn-container">
+                      <button
+                        className="delete"
+                        onClick={() => handleDelete(entry.id)}
+                      >
+                        Delete
+                      </button>
+                      <button
+                        className="edit"
+                        onClick={() => handleEdit(entry)}
+                      >
+                        Edit
+                      </button>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          )}
+        </>
       )}
     </div>
   );

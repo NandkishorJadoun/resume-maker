@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export function Projects({ projects, setProjects }) {
+export function Projects({ projects, setProjects, isActive, onShow }) {
   const [editId, setEditId] = useState(null);
   const [formData, setFormData] = useState({
     project: "",
@@ -87,58 +87,68 @@ export function Projects({ projects, setProjects }) {
 
   return (
     <div className="resume-section projects-section">
-      <h2>Projects Details</h2>
+      <h2 onClick={onShow}>
+        <p>Projects Details</p>
+        <button>&#8964;</button>
+      </h2>
 
-      <ProjectsForm
-        formHandler={formHandler}
-        formData={formData}
-        submitHandler={submitHandler}
-        isEditing={isEditing}
-        handleCancelEdit={handleCancelEdit}
-      />
+      {isActive && (
+        <>
+          <ProjectsForm
+            formHandler={formHandler}
+            formData={formData}
+            submitHandler={submitHandler}
+            isEditing={isEditing}
+            handleCancelEdit={handleCancelEdit}
+          />
 
-      {projects.length > 0 && <p>Submitted Projects:</p>}
+          {projects.length > 0 && <p>Submitted Projects:</p>}
 
-      {projects.length > 0 && (
-        <div className="entry-container">
-          {projects.map((entry) => {
-            return (
-              <div key={entry.id}>
-                <p>Project: {entry.project}</p>
-                <p>Stack: {entry.stack}</p>
-                {entry.startTime && (
-                  <p>
-                    Time: {entry.startTime}
-                    {entry.endTime && " \u2013 " + entry.endTime}
-                  </p>
-                )}
+          {projects.length > 0 && (
+            <div className="entry-container">
+              {projects.map((entry) => {
+                return (
+                  <div key={entry.id} className="entry">
+                    <p>Project: {entry.project}</p>
+                    <p>Stack: {entry.stack}</p>
+                    {entry.startTime && (
+                      <p>
+                        Time: {entry.startTime}
+                        {entry.endTime && " \u2013 " + entry.endTime}
+                      </p>
+                    )}
 
-                {entry.features[0] && (
-                  <>
-                    <p>Features:</p>
-                    <ul>
-                      {entry.features.map((point, index) => {
-                        return point.trim() && <li key={index}>{point}</li>;
-                      })}
-                    </ul>
-                  </>
-                )}
+                    {entry.features[0] && (
+                      <>
+                        <p>Features:</p>
+                        <ul>
+                          {entry.features.map((point, index) => {
+                            return point.trim() && <li key={index}>{point}</li>;
+                          })}
+                        </ul>
+                      </>
+                    )}
 
-                <div className="btn-container">
-                  <button
-                    className="delete"
-                    onClick={() => handleDelete(entry.id)}
-                  >
-                    Delete
-                  </button>
-                  <button className="edit" onClick={() => handleEdit(entry)}>
-                    Edit
-                  </button>
-                </div>
-              </div>
-            );
-          })}
-        </div>
+                    <div className="btn-container">
+                      <button
+                        className="delete"
+                        onClick={() => handleDelete(entry.id)}
+                      >
+                        Delete
+                      </button>
+                      <button
+                        className="edit"
+                        onClick={() => handleEdit(entry)}
+                      >
+                        Edit
+                      </button>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          )}
+        </>
       )}
     </div>
   );
