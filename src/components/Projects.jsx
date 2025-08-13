@@ -46,7 +46,6 @@ export function Projects({ projects, setProjects }) {
       project: "",
       startTime: "",
       endTime: "",
-
       features: "",
       stack: "",
     });
@@ -87,7 +86,7 @@ export function Projects({ projects, setProjects }) {
   }
 
   return (
-    <div class="resume-section projects-section">
+    <div className="resume-section projects-section">
       <h2>Projects Details</h2>
 
       <ProjectsForm
@@ -105,7 +104,7 @@ export function Projects({ projects, setProjects }) {
           {projects.map((entry) => {
             return (
               <div key={entry.id}>
-                <p>Project: {entry.name}</p>
+                <p>Project: {entry.project}</p>
                 <p>Stack: {entry.stack}</p>
                 {entry.startTime && (
                   <p>

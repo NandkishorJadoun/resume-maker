@@ -79,7 +79,7 @@ export function Education({ education, setEducation }) {
   }
 
   return (
-    <div class="resume-section education-section">
+    <div className="resume-section education-section">
       <h2>Education Details</h2>
 
       <EducationForm

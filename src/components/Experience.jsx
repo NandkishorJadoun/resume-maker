@@ -92,7 +92,7 @@ export function Experience({ experience, setExperience }) {
   }
 
   return (
-    <div class="resume-section experience-section">
+    <div className="resume-section experience-section">
       <h2>Experience Details</h2>
 
       <ExperienceForm

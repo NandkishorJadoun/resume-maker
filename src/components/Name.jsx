@@ -17,7 +17,7 @@ export function Name({ setName }) {
 
 
   return (
-    <div class="resume-section name-section">
+    <div className="resume-section name-section">
       <h2>Write your name:</h2>
       <form onSubmit={submitHandler}>
         <InputName

@@ -1,10 +1,10 @@
 export function Preview({ resume }) {
   return (
-    <div>
-      <h1>
+    <div className="resume">
+      <h1 className="resume-name">
         {resume.name.first} {resume.name.last}
       </h1>
-      <div>
+      <div className="resume-contact">
         {resume.contact.number && resume.contact.number + " | "}
         {resume.contact.email && resume.contact.email + " | "}
         {resume.contact.linkedIn && resume.contact.linkedIn + " | "}
@@ -19,13 +19,12 @@ export function Preview({ resume }) {
           <hr />
           {resume.education.map((entry) => {
             return (
-              <div key={entry.id}>
+              <div key={entry.id} className="resume-entry">
                 <h3>{entry.college}</h3>
-                <p>{entry.location}</p>
-                <p>{entry.degree}</p>
-                <p>
-                  {entry.startTime} -{" "}
-                  {entry.endTime}
+                <p className="edu-location">{entry.location}</p>
+                <p className="edu-degree">{entry.degree}</p>
+                <p className="edu-time">
+                  {entry.startTime} {entry.endTime && " - " + entry.endTime}
                 </p>
               </div>
             );
@@ -41,16 +40,16 @@ export function Preview({ resume }) {
           <hr />
           {resume.experience.map((entry) => {
             return (
-              <div key={entry.id}>
+              <div key={entry.id} className="resume-entry">
                 <h3>{entry.profession}</h3>
-                <p>
-                  {entry.startTime} - {entry.endTime}
+                <p className="exp-time">
+                  {entry.startTime} {entry.endTime && " - " + entry.endTime}
                 </p>
-                <p>{entry.profession}</p>
-                <p>{entry.location}</p>
+                <p className="exp-company">{entry.company}</p>
+                <p className="exp-location">{entry.location}</p>
 
                 {entry.responsibilities.length > 0 && (
-                  <ul>
+                  <ul className="resume-list">
                     {entry.responsibilities.map(
                       (responsibility, index) =>
                         responsibility && <li key={index}>{responsibility}</li>
@@ -71,17 +70,18 @@ export function Preview({ resume }) {
           <hr />
           {resume.projects.map((entry) => {
             return (
-              <div key={entry.id}>
-                <div>
-                  <h3>{entry.project}</h3>
-                  <p>{" | " + entry.stack}</p>
+              <div key={entry.id} className="resume-entry">
+                <div className="resume-proj-name">
+                  <h3>{entry.project} </h3>
+                  <p>|</p>
+                  <p className="stack">{entry.stack}</p>
                 </div>
-                <p>
-                  {entry.startTime} - {entry.endTime}
+                <p className="proj-time">
+                  {entry.startTime} {entry.endTime && " - " + entry.endTime}
                 </p>
 
                 {entry.features.length > 0 && (
-                  <ul>
+                  <ul className="resume-list">
                     {entry.features.map(
                       (feature, index) =>
                         feature && <li key={index}>{feature}</li>
@@ -99,12 +99,12 @@ export function Preview({ resume }) {
       {Object.values(resume.skills).some(
         (skillCategory) => skillCategory.length > 0
       ) && (
-        <div>
+        <div className="resume-skills">
           <h2>Technical Skills</h2>
           <hr />
           {resume.skills.languages.length > 0 && (
             <div>
-              <h3>Languages: </h3>
+              <h4>Languages: </h4>
               <p>
                 {resume.skills.languages.map((lang, index) => (
                   <span key={lang.id}>
@@ -116,7 +116,7 @@ export function Preview({ resume }) {
           )}
           {resume.skills.frameworks.length > 0 && (
             <div>
-              <h3>Frameworks: </h3>
+              <h4>Frameworks: </h4>
               <p>
                 {resume.skills.frameworks.map((fw, index) => (
                   <span key={fw.id}>
@@ -128,7 +128,7 @@ export function Preview({ resume }) {
           )}
           {resume.skills.tools.length > 0 && (
             <div>
-              <h3>Tools: </h3>
+              <h4>Tools: </h4>
               <p>
                 {resume.skills.tools.map((tool, index) => (
                   <span key={tool.id}>
@@ -140,7 +140,7 @@ export function Preview({ resume }) {
           )}
           {resume.skills.libraries.length > 0 && (
             <div>
-              <h3>Tools: </h3>
+              <h4>Libraries: </h4>
               <p>
                 {resume.skills.libraries.map((lib, index) => (
                   <span key={lib.id}>

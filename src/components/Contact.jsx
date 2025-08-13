@@ -22,7 +22,7 @@ export function Contact({ setContact }) {
   }
 
   return (
-    <div class="resume-section contact-section">
+    <div className="resume-section contact-section">
       <h2>Contact Details: </h2>
       <form onSubmit={submitHandler}>
         <InputContact
@@ -35,21 +35,18 @@ export function Contact({ setContact }) {
         <InputContact
           label="Email: "
           name="email"
-          type="email"
           value={email}
           handleChange={(e) => handleChange(e, setEmail)}
         />
         <InputContact
           label="LinkedIn: "
           name="linkedIn"
-          type="url"
           value={linkedIn}
           handleChange={(e) => handleChange(e, setLinkedIn)}
         />
         <InputContact
           label="Github: "
           name="github"
-          type="url"
           value={github}
           handleChange={(e) => handleChange(e, setGithub)}
         />

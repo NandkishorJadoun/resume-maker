@@ -70,7 +70,7 @@ export function Skills({
   const libJsx = createSkillsJsx(libraries, setLibraries);
 
   return (
-    <div class="resume-section skills-section">
+    <div className="resume-section skills-section">
       <h2>Skills</h2>
       <SkillsForm
         name={"language"}
