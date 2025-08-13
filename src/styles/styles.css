@@ -1,3 +1,14 @@
+:root {
+    --primary-color: #3A86FF;
+    --text-color-primary: #212121;
+    --text-color-secondary: #6C757D;
+    --background-color-primary: #F4F6F9;
+    --background-color-secondary: #FFFFFF;
+    --border-color: #E0E0E0;
+    --delete-color: hsl(354, 75%, 51%);
+    --edit-color: hsl(211, 100%, 26%);
+}
+
 * {
     padding: 0;
     margin: 0;
@@ -5,7 +16,7 @@
 }
 
 body {
-    background-color: #F4F6F9;
+    background-color: var(--background-color-primary);
     font-size: 1rem;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
@@ -15,10 +26,42 @@ body {
     margin: 0 auto;
 }
 
+ul {
+    list-style-type: "•  "
+}
+
+h2 {
+    color: var(--primary-color);
+}
+
+textarea {
+    resize: vertical;
+    min-height: 5rem;
+}
+
+input,
+textarea {
+    background-color: var(--background-color-primary);
+    border: 1px solid var(--border-color);
+    color: var(--text-color-primary);
+    padding: 4px;
+}
+
+input,
+textarea,
+button {
+    font: inherit;
+}
+
+label {
+    color: var(--text-color-secondary);
+    text-transform: uppercase;
+}
+
 header {
-    background-color: #FFFFFF;
-    color: #212121;
-    border-bottom: 1px solid #E0E0E0;
+    background-color: var(--background-color-secondary);
+    color: var(--text-color-primary);
+    border-bottom: 1px solid var(--border-color);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -30,46 +73,14 @@ header h1 {
 }
 
 nav {
-    color: #6C757D;
-    border: 1px solid #E0E0E0;
+    color: var(--text-color-secondary);
+    border: 1px solid var(--border-color);
 }
 
 main {
     display: grid;
     grid-template-columns: 35% 1fr;
-}
-
-input,
-button,
-textarea {
-    font: inherit;
-}
-
-input,
-textarea {
-    background-color: #F4F6F9;
-    border: 1px solid #E0E0E0;
-    color: #212121;
-    padding: 4px;
-}
-
-textarea {
-    resize: vertical;
-    min-height: 5rem;
-}
-
-ul {
-    list-style-type: "•  "
-
-}
-
-label {
-    color: #6C757D;
-    text-transform: uppercase;
-}
-
-h2 {
-    color: #3A86FF;
+    gap: 0.5rem;
 }
 
 form {
@@ -81,36 +92,34 @@ form>div {
     display: grid;
 }
 
-form button {
-    background-color: #3A86FF;
-    padding: 4px 12px;
-    color: #FFFFFF;
-    border: none;
-    font-weight: bold;
-    justify-self: center;
-}
-
-.input-section {
-    background-color: #F4F6F9;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
+.resume-section,
+.resume {
+    border: 1px solid var(--border-color);
+    background-color: var(--background-color-secondary);
+    border-radius: 8px;
     padding: 0.5rem;
-    padding-left: 0;
 }
 
 .resume-section {
-    background-color: #FFFFFF;
-    border-radius: 8px;
-    border: 1px solid #E0E0E0;
-    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.input-section,
+.preview-section {
+    background-color: var(--background-color-primary);
+    padding: 8px 0;
+}
+
+.input-section {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
 }
 
 .resume-section>p {
-    color: #3A86FF;
+    color: var(--primary-color);
     font-size: 1.25rem;
     font-weight: bold;
     text-align: center;
@@ -123,11 +132,22 @@ form button {
     gap: 0.8rem;
 }
 
-.entry-container button {
+.entry-container ul {
+    margin-top: 4px;
+    padding-left: 1rem;
+}
+
+.entry-container button,
+form button {
     padding: 4px 12px;
-    color: #FFFFFF;
+    color: var(--background-color-secondary);
     border: none;
     font-weight: bold;
+}
+
+form button {
+    background-color: var(--primary-color);
+    justify-self: center;
 }
 
 .btn-container {
@@ -140,11 +160,6 @@ form button {
     margin-top: 0.5rem;
 }
 
-.entry-container ul {
-    margin-top: 4px;
-    padding-left: 16px;
-}
-
 .edit {
     background-color: hsl(211, 100%, 26%);
 }
@@ -152,7 +167,16 @@ form button {
 .delete,
 .cancel,
 .remove {
-    background-color: hsl(354, 75%, 51%);
+    background-color: var(--delete-color);
+}
+
+.remove {
+    color: var(--delete-color);
+    background-color: var(--background-color-secondary);
+    padding-left: 2px;
+    justify-content: center;
+    border: 0;
+    font-weight: bold;
 }
 
 #skills-form {
@@ -167,7 +191,7 @@ form button {
 }
 
 .skills-section>div {
-    color: #3A86FF;
+    color: var(--primary-color);
     font-weight: bold;
 }
 
@@ -176,32 +200,17 @@ form button {
 }
 
 .skills-section span {
-    color: black;
+    color: var(--text-color-primary);
     margin-right: 10px;
     font-weight: normal;
 }
 
-.remove {
-    color: hsl(354, 75%, 51%);
-    background-color: #FFFFFF;
-    padding-left: 2px;
-    justify-content: center;
-    border: 0;
-    font-weight: bold;
-
-}
-
 .preview-section {
-    background-color: #F4F6F9;
-    padding: 8px 0;
     font-family: 'Times New Roman', Times, serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    color: #212121;
+    color: var(--text-color-primary);
 }
 
 .resume {
-    border-radius: 8px;
-    border: 1px solid #E0E0E0;
-    background-color: #FFFFFF;
     min-width: 650px;
     min-height: 1000px;
     padding: 3rem 2.5rem;
@@ -209,7 +218,7 @@ form button {
 
 .resume h2 {
     text-transform: uppercase;
-    color: #212121;
+    color: var(--text-color-primary);
     font-size: 1.25rem;
     font-weight: normal;
 }
@@ -229,7 +238,7 @@ form button {
     display: grid;
     grid-template-columns: 1fr auto;
     margin-bottom: 0.5rem;
-    padding: 0 0.5rem 0 0.8rem;
+    padding: 0 8px 0 12px;
 }
 
 .edu-location,
