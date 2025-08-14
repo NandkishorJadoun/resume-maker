@@ -89,7 +89,7 @@ export function Projects({ projects, setProjects, isActive, onShow }) {
     <div className="resume-section projects-section">
       <h2 onClick={onShow}>
         <p>Projects Details</p>
-        <button>&#8964;</button>
+        {!isActive && <button>&#8964;</button>}
       </h2>
 
       {isActive && (

@@ -18,7 +18,7 @@ export function Name({ setName, isActive, onShow }) {
     <div className="resume-section name-section">
       <h2 onClick={onShow}>
         <p>Name Details</p>
-        <button>&#8964;</button>
+        {!isActive && <button>&#8964;</button>}
       </h2>
 
       {isActive && (

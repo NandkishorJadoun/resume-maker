@@ -95,7 +95,7 @@ export function Experience({ experience, setExperience, isActive, onShow }) {
     <div className="resume-section experience-section">
       <h2 onClick={onShow}>
         <p>Experience Details</p>
-        <button onClick={onShow}>&#8964;</button>
+        {!isActive && <button>&#8964;</button>}
       </h2>
 
       {isActive && (

@@ -37,7 +37,7 @@ export function Preview({ resume }) {
       {resume.experience.length > 0 && (
         <div>
           <h2>Experience</h2>
-          <hr />
+         <hr />
           {resume.experience.map((entry) => {
             return (
               <div key={entry.id} className="resume-entry">

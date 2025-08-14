@@ -75,7 +75,7 @@ export function Skills({
     <div className="resume-section skills-section">
       <h2 onClick={onShow}>
         <p>Skills</p>
-        <button>&#8964;</button>
+        {!isActive && <button>&#8964;</button>}
       </h2>
       {isActive && (
         <>

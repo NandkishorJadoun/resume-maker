@@ -25,7 +25,7 @@ export function Contact({ setContact, isActive, onShow }) {
     <div className="resume-section contact-section">
       <h2 onClick={onShow}>
         <p>Contact Details</p>
-        <button >&#8964;</button>
+        {!isActive && <button>&#8964;</button>}
       </h2>
       {isActive && (
         <form onSubmit={submitHandler}>
