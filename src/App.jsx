@@ -9,6 +9,7 @@ import { Preview } from "./components/Preview";
 import github from "./assets/github.svg";
 import toggle from "./assets/toggle.svg";
 import print from "./assets/printer.svg";
+
 import { initData } from "./assets/initData";
 import "./styles/styles.css";
 

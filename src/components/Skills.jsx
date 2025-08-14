@@ -1,4 +1,5 @@
 import { useState } from "react";
+import downArrow from "../assets/chevron-down.svg";
 
 export function Skills({
   languages,
@@ -75,7 +76,11 @@ export function Skills({
     <div className="resume-section skills-section">
       <h2 onClick={onShow}>
         <p>Skills</p>
-        {!isActive && <button>&#8964;</button>}
+        {!isActive && (
+          <button>
+            <img src={downArrow} alt="down arrow head" height={28} />
+          </button>
+        )}
       </h2>
       {isActive && (
         <>

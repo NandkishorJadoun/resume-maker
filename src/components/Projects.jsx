@@ -1,4 +1,5 @@
 import { useState } from "react";
+import downArrow from "../assets/chevron-down.svg";
 
 export function Projects({ projects, setProjects, isActive, onShow }) {
   const [editId, setEditId] = useState(null);
@@ -89,7 +90,11 @@ export function Projects({ projects, setProjects, isActive, onShow }) {
     <div className="resume-section projects-section">
       <h2 onClick={onShow}>
         <p>Projects Details</p>
-        {!isActive && <button>&#8964;</button>}
+        {!isActive && (
+          <button>
+            <img src={downArrow} alt="down arrow head" height={28} />
+          </button>
+        )}
       </h2>
 
       {isActive && (

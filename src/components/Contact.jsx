@@ -1,4 +1,5 @@
 import { useState } from "react";
+import downArrow from "../assets/chevron-down.svg";
 
 export function Contact({ setContact, isActive, onShow }) {
   const [number, setNumber] = useState("");
@@ -25,7 +26,11 @@ export function Contact({ setContact, isActive, onShow }) {
     <div className="resume-section contact-section">
       <h2 onClick={onShow}>
         <p>Contact Details</p>
-        {!isActive && <button>&#8964;</button>}
+        {!isActive && (
+          <button>
+            <img src={downArrow} alt="down arrow head" height={28} />
+          </button>
+        )}
       </h2>
       {isActive && (
         <form onSubmit={submitHandler}>

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import downArrow from "../assets/chevron-down.svg";
 
 export function Experience({ experience, setExperience, isActive, onShow }) {
   const [editId, setEditId] = useState(null);
@@ -95,7 +96,11 @@ export function Experience({ experience, setExperience, isActive, onShow }) {
     <div className="resume-section experience-section">
       <h2 onClick={onShow}>
         <p>Experience Details</p>
-        {!isActive && <button>&#8964;</button>}
+        {!isActive && (
+          <button>
+            <img src={downArrow} alt="down arrow head" height={28} />
+          </button>
+        )}
       </h2>
 
       {isActive && (

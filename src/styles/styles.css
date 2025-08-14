@@ -1,25 +1,23 @@
 :root {
-    --primary-color: #3A86FF;
-    --text-color-primary: #212121;
+    --primary-color: #212121;    
+    --icon-color: #FFFFFF;
+    --background-color-secondary: #FFFFFF;
     --text-color-secondary: #6C757D;
     --background-color-primary: #F4F6F9;
-    --background-color-secondary: #FFFFFF;
     --border-color: #E0E0E0;
     --delete-color: hsl(354, 75%, 51%);
     --edit-color: hsl(211, 100%, 26%);
-    --icon-color: hsl(0, 0%, 100%);
 }
 
 [data-theme=dark] {
-    --primary-color: #3A86FF;
-    --delete-color: hsl(354, 70%, 56%);
-    --edit-color: hsl(210, 70%, 56%);
-    --text-color-primary: #E4E6EB;
+    --primary-color: #E4E6EB;    
+    --icon-color: #E4E6EB;
+    --background-color-secondary: #1E2227;
     --text-color-secondary: #A1A6B0;
     --background-color-primary: #121417;
-    --background-color-secondary: #1E2227;
     --border-color: #2A2F36;
-    --icon-color: hsl(217, 100%, 61%);
+    --edit-color: hsl(210, 70%, 56%);
+    --delete-color: hsl(354, 70%, 56%);
 }
 
 * {
@@ -61,7 +59,7 @@ input,
 textarea {
     background-color: var(--background-color-primary);
     border: 1px solid var(--border-color);
-    color: var(--text-color-primary);
+    color: var(--primary-color);
     padding: 4px;
 }
 
@@ -78,7 +76,7 @@ label {
 
 header {
     background-color: var(--background-color-secondary);
-    color: var(--text-color-primary);
+    color: var(--primary-color);
     border-bottom: 1px solid var(--border-color);
     display: flex;
     align-items: center;
@@ -175,7 +173,7 @@ form button {
 }
 
 .entry {
-    color: var(--text-color-primary);
+    color: var(--primary-color);
 }
 
 form button {
@@ -233,7 +231,7 @@ form button {
 }
 
 .skills-section span {
-    color: var(--text-color-primary);
+    color: var(--primary-color);
     margin-right: 10px;
     font-weight: normal;
 }
@@ -241,7 +239,7 @@ form button {
 .preview-section {
     padding-right: 8px;
     font-family: 'Times New Roman', Times, serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    color: var(--text-color-primary);
+    color: var(--primary-color);
 }
 
 .resume {
@@ -251,7 +249,7 @@ form button {
 
 .resume h2 {
     text-transform: uppercase;
-    color: var(--text-color-primary);
+    color: var(--primary-color);
     font-size: 1.25rem;
     font-weight: normal;
 }
@@ -319,10 +317,11 @@ form button {
 }
 
 h2>button {
-    font-size: 1.5rem;
+    display: flex;
     border: none;
-    background-color: var(--background-color-secondary );
+    background-color: var(--icon-color);
     color: var(--primary-color);
+    border-radius: 50%;
 }
 
 @media (max-width: 900px) {
@@ -375,7 +374,7 @@ h2>button {
         size: auto;
         margin: 0;
     }
-    
+
     header,
     .input-section {
         display: none;

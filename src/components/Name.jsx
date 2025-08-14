@@ -1,4 +1,5 @@
 import { useState } from "react";
+import downArrow from "../assets/chevron-down.svg";
 
 export function Name({ setName, isActive, onShow }) {
   const [first, setFirst] = useState("");
@@ -18,7 +19,11 @@ export function Name({ setName, isActive, onShow }) {
     <div className="resume-section name-section">
       <h2 onClick={onShow}>
         <p>Name Details</p>
-        {!isActive && <button>&#8964;</button>}
+        {!isActive && (
+          <button>
+            <img src={downArrow} alt="down arrow head" height={28} />
+          </button>
+        )}
       </h2>
 
       {isActive && (
