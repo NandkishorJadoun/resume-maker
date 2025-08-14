@@ -320,11 +320,9 @@ form button {
 
 h2>button {
     font-size: 1.5rem;
-    padding: 0 0.5rem 0.4rem;
     border: none;
-    border-radius: 50%;
-    background-color: var(--primary-color);
-    color: var(--background-color-primary);
+    background-color: var(--background-color-secondary );
+    color: var(--primary-color);
 }
 
 @media (max-width: 900px) {
